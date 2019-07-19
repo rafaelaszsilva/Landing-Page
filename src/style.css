@@ -50,6 +50,7 @@
 
     .card {
       background: -webkit-linear-gradient(#ffb3b3, #ffffff);
+      background-clip: padding-box;
       -webkit-background-clip: padding-box;
       -webkit-text-fill-color: #3f3f3f;
     }
@@ -64,6 +65,12 @@
     }
 
     /*---Media Queries --*/
+
+    @media (min-width: 577px) {
+      .mobile-show{
+        display: none !important;
+      }
+    }
 
     @media (max-width: 992px) {
       .display-4 {
@@ -101,6 +108,10 @@
       }
       .form-control {
         width: 80%;
+      }
+
+      .web-show{
+        display: none !important;
       }
     }
 
@@ -154,8 +165,6 @@
       -webkit-backface-visibility: visible;
       backface-visibility: visible;
     }
-
-    /*--- Fixed Background Image --*/
 
     figure {
       position: relative;

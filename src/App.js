@@ -10,9 +10,14 @@ import bigmac from './bigmac.png';
 import tech from './tech.png';
 import ifsp from './ifspelet1.png';
 import usp from './uspsielet1.png';
+import mobile1 from './Fundoeditmobile.png';
+import mobile2 from './Fundoeditmobile2.png';
+import axios from 'axios';
 import './App.css';
 import './style.css';
+import './contact.php';
 import { template } from '@babel/core';
+
 
 class App extends Component {
     state = {
@@ -22,17 +27,18 @@ class App extends Component {
     }
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state);
-
-        const template = "meu_email";
-
-        this.sendFeedback(
-            template,
-            this.state.subject,
-            this.state.message
-        );
-    }
-
+    
+        axios
+          .get(
+            `https://us-central1-node-mailler-6ec56.cloudfunctions.net/sendMail?name=${this.state.name}&subject=${this.state.subject}&message=${this.state.message}`
+          )
+          .then(function(response) {
+            alert('Email enviado com sucesso!');
+          })
+          .catch(function(error) {
+            alert('Erro.')
+          });
+      }
     sendFeedback(templateId, subject, feedback) {
         window.emailjs
             .send('postmark', templateId, {
@@ -55,6 +61,7 @@ class App extends Component {
         this.setState({ ...this.state, subject: event.target.value });
 
     }
+
     render() {
         return (
             <React.Fragment>
@@ -95,10 +102,12 @@ class App extends Component {
                     </ul>
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                            <img src={fundo1} className="img-fluid" alt="Responsive image"></img>
+                            <img src={mobile1} className="mobile-show" alt="Responsive image"></img>
+                            <img src={fundo1} className="web-show" alt="Responsive image"></img>
                         </div>
                         <div className="carousel-item">
-                            <img src={fundo2} className="img-fluid" alt="Responsive image"></img>
+                            <img src={mobile2} className="mobile-show" alt="Responsive image"></img>
+                            <img src={fundo2} className="web-show" alt="Responsive image"></img>
                         </div>
                     </div>
                 </div>
